@@ -249,10 +249,10 @@ const Home = () => {
                 className="font-display text-white text-5xl sm:text-7xl lg:text-[7.5rem] font-extrabold leading-[0.9] tracking-tight mb-6 animate-fade-up"
                 style={{ animationDelay: '0.1s' }}
               >
-                Commercial<br />
-                <span className="text-white/40">roofing for</span><br />
+                Roofs you don&apos;t<br />
+                <span className="text-white/40">have to think</span><br />
                 <span className="relative inline-block">
-                  serious buildings.
+                  about.
                   <span className="absolute -bottom-2 left-0 right-0 h-1 bg-white"></span>
                 </span>
               </h1>
