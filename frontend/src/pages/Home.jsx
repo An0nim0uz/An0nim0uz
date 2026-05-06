@@ -576,43 +576,51 @@ const Home = () => {
               </p>
 
               <div className="space-y-4 mb-10">
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
+                <a
+                  href={`tel:${phoneNumber}`}
+                  data-testid="contact-phone-card"
+                  className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors active:scale-[0.99]"
+                >
                   <Phone className="mt-0.5 flex-shrink-0" size={20} />
                   <div>
-                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Phone</p>
-                    <a href={`tel:${phoneNumber}`} className="font-display text-xl font-bold hover:text-white/80 transition-colors" data-testid="contact-phone">{phoneNumber}</a>
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Phone — tap to call</p>
+                    <span className="font-display text-xl font-bold" data-testid="contact-phone">{phoneNumber}</span>
                   </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
+                </a>
+                <a
+                  href={`mailto:${emailAddress}`}
+                  data-testid="contact-email-card"
+                  className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors active:scale-[0.99]"
+                >
                   <Mail className="mt-0.5 flex-shrink-0" size={20} />
                   <div>
-                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Email</p>
-                    <a href={`mailto:${emailAddress}`} className="font-display text-xl font-bold hover:text-white/80 transition-colors break-all" data-testid="contact-email">{emailAddress}</a>
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Email — tap to send</p>
+                    <span className="font-display text-xl font-bold break-all" data-testid="contact-email">{emailAddress}</span>
                   </div>
-                </div>
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
+                </a>
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
                   <Clock className="mt-0.5 flex-shrink-0" size={20} />
                   <div>
                     <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Hours</p>
                     <p className="font-medium">7 AM – 7 PM, 7 days a week</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address.line1 + ', ' + address.line2)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="contact-address-card"
+                  className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors active:scale-[0.99]"
+                >
                   <MapPin className="mt-0.5 flex-shrink-0" size={20} />
                   <div>
-                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Address</p>
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address.line1 + ', ' + address.line2)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium hover:text-white/80 transition-colors block"
-                      data-testid="contact-address"
-                    >
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Address — tap for directions</p>
+                    <span className="font-medium block" data-testid="contact-address">
                       {address.line1}<br />{address.line2}
-                    </a>
+                    </span>
                     <p className="text-white/60 text-sm">Servicing the entire GTA</p>
                   </div>
-                </div>
+                </a>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
