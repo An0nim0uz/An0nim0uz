@@ -84,44 +84,43 @@ const Home = () => {
       icon: Search,
       title: 'Estimates & Inspections',
       desc: 'Detailed roof assessments, drone surveys, moisture scans, and transparent itemized quotes for property managers and owners.',
-      img: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1200&q=80',
+      img: 'https://images.unsplash.com/photo-1525478440856-b40668b83b79?w=1200&q=80',
     },
     {
       icon: Wrench,
       title: 'Maintenance & Repair',
       desc: 'Scheduled preventative maintenance programs, leak repairs, flashing, and seam work that extends roof life by 5–10 years.',
-      img: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1200&q=80',
+      img: 'https://images.unsplash.com/photo-1559836513-6d09f0d49ec8?w=1200&q=80',
     },
     {
       icon: Cloud,
       title: 'Emergency Repair Service',
-      desc: '24/7 dispatch for storm damage, active leaks, and ponding water. Same-day tarp service. Insurance billed direct.',
-      img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
+      desc: 'Storm damage, active leaks, and ponding water — dispatched fast. Insurance billed direct.',
+      img: 'https://images.unsplash.com/photo-1640476750068-72c645e653cd?w=1200&q=80',
     },
     {
       icon: LayoutGrid,
       title: 'Alterations & Retrofits',
       desc: 'HVAC curbs, skylights, hatches, drains, and structural retrofits — fully integrated and warranty-backed.',
-      img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+      img: 'https://images.unsplash.com/photo-1704908325704-250c0a685c11?w=1200&q=80',
     },
     {
       icon: Layers,
       title: 'Coating Systems',
       desc: 'Restorative silicone, acrylic, and SPF coatings that seal aging roofs, reflect UV, and defer replacement costs.',
-      img: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?w=1200&q=80',
+      img: 'https://images.unsplash.com/photo-1679232065280-7551023ee326?w=1200&q=80',
     },
     {
       icon: Hammer,
       title: 'Roof Replacements',
       desc: 'Full tear-off and re-roof — TPO, EPDM, modified bitumen, PVC, and metal systems. Manufacturer-certified installs.',
-      img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200&q=80',
+      img: 'https://images.unsplash.com/photo-1719211608617-24231c31f875?w=1200&q=80',
     },
   ];
 
   const stats = [
-    { value: '15+', label: 'Years in Business' },
-    { value: '5M+', label: 'Sq Ft Installed' },
-    { value: '24/7', label: 'Emergency Response' },
+    { value: '20+', label: 'Years In Service' },
+    { value: '2,000+', label: 'Jobs Done' },
     { value: '100%', label: 'WSIB Covered' },
   ];
 
@@ -241,8 +240,8 @@ const Home = () => {
           <div className="grid lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full mb-6 animate-fade-up">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span className="text-white/90 text-xs sm:text-sm font-semibold tracking-wide">COMMERCIAL ROOFING · 24/7 EMERGENCY DISPATCH</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span className="text-white/90 text-xs sm:text-sm font-semibold tracking-wide">COMMERCIAL ROOFING · GREATER TORONTO AREA</span>
               </div>
 
               <h1
@@ -286,11 +285,11 @@ const Home = () => {
 
             {/* Stats card */}
             <div className="lg:col-span-4">
-              <div className="grid grid-cols-2 gap-px bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+              <div className="grid grid-cols-3 gap-px bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 animate-fade-up" style={{ animationDelay: '0.4s' }}>
                 {stats.map((s, i) => (
-                  <div key={i} className="bg-[#0a2540]/60 backdrop-blur-md p-5 sm:p-6 hover:bg-[#0a2540]/80 transition-colors" data-testid={`stat-${i}`}>
-                    <div className="font-display text-white text-3xl sm:text-4xl font-extrabold tracking-tight">{s.value}</div>
-                    <div className="text-white/60 text-xs sm:text-sm font-medium mt-1">{s.label}</div>
+                  <div key={i} className="bg-[#0a2540]/60 backdrop-blur-md p-4 sm:p-5 hover:bg-[#0a2540]/80 transition-colors text-center" data-testid={`stat-${i}`}>
+                    <div className="font-display text-white text-2xl sm:text-3xl font-extrabold tracking-tight">{s.value}</div>
+                    <div className="text-white/60 text-[11px] sm:text-xs font-medium mt-1 leading-tight">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -380,12 +379,11 @@ const Home = () => {
             <span className="text-white/40">that keep your</span> business running.
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 rounded-2xl overflow-hidden">
             {[
               { num: '01', title: 'Property Manager Focus', desc: 'Quarterly maintenance programs, photo documentation, and a single point of contact across your portfolio.' },
               { num: '02', title: 'Manufacturer Certified', desc: 'GAF Master, IKO Shieldpro, Carlisle SynTec, and Firestone Red Shield — full system warranties up to 30 years.' },
               { num: '03', title: 'Insurance & Compliance', desc: '$5M liability, WSIB clearance, current COI on file, and direct billing to insurance carriers.' },
-              { num: '04', title: '24/7 Emergency Dispatch', desc: 'Active leak or storm damage? Tarped within hours, permanent repair within days.' },
             ].map((item, i) => (
               <div key={i} className="bg-[#0a2540] hover:bg-black p-7 sm:p-8 transition-all duration-300 group" data-testid={`why-item-${i}`}>
                 <div className="font-display text-white/30 text-2xl font-bold mb-6">{item.num}</div>
@@ -597,7 +595,6 @@ const Home = () => {
                   <div>
                     <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Hours</p>
                     <p className="font-medium">7 AM – 7 PM, 7 days a week</p>
-                    <p className="text-white/60 text-sm">24/7 emergency service</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
