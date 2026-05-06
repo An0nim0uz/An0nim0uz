@@ -5,6 +5,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../components/ui/carousel';
+import ServiceAreaMap from '../components/ServiceAreaMap';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,14 +24,6 @@ const Home = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
-
-  const getMapUrl = () => {
-    const query = selectedCity
-      ? `${selectedCity}, Ontario, Canada`
-      : 'Greater Toronto Area, Ontario, Canada';
-    const zoom = selectedCity ? 12 : 9;
-    return `https://maps.google.com/maps?q=${encodeURIComponent(query)}&z=${zoom}&output=embed`;
-  };
 
   const getMapsAppUrl = () => {
     const query = selectedCity
@@ -513,22 +506,13 @@ const Home = () => {
 
             {/* Map */}
             <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden h-[280px] sm:h-[320px]" data-testid="service-area-map">
-              <iframe
-                key={selectedCity || 'gta'}
-                title={selectedCity ? `${selectedCity} Service Area` : 'GTA Service Area'}
-                src={getMapUrl()}
-                className="w-full h-full"
-                style={{ border: 0 }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              ></iframe>
+              <ServiceAreaMap selectedCity={selectedCity} />
               <a
                 href={getMapsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="open-in-google-maps"
-                className="absolute bottom-3 right-3 bg-white/95 hover:bg-white text-slate-800 text-xs font-semibold px-3 py-2 rounded-full shadow-lg flex items-center gap-1.5 transition-all hover:scale-105"
+                className="absolute bottom-3 right-3 z-[1000] bg-white/95 hover:bg-white text-slate-800 text-xs font-semibold px-3 py-2 rounded-full shadow-lg flex items-center gap-1.5 transition-all hover:scale-105"
               >
                 <MapPin size={14} className="text-sky-600" />
                 Open in Google Maps
