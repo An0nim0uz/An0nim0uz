@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, CheckCircle, Star, ChevronDown, Menu, Shield, Hammer, Search, Cloud, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle, Star, ChevronDown, Menu, Shield, Hammer, Search, Cloud, ArrowRight, ArrowUpRight, Wrench, LayoutGrid, Layers, Building2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
@@ -54,14 +54,15 @@ const Home = () => {
       if (response.ok) {
         toast.success("Thanks! We'll be in touch shortly.");
         const serviceMap = {
-          replacement: 'roof replacement',
-          repair: 'roof repair',
-          inspection: 'a roof inspection',
-          storm: 'storm / emergency repair',
-          eavestrough: 'eavestrough work',
+          inspection: 'estimates & inspections',
+          maintenance: 'maintenance & repair',
+          emergency: 'emergency repair service',
+          alterations: 'alterations & retrofits',
+          coatings: 'coating systems',
+          replacement: 'a roof replacement',
           multiple: 'multiple services',
         };
-        const serviceName = serviceMap[formData.service] || 'roofing services';
+        const serviceName = serviceMap[formData.service] || 'commercial roofing services';
         let smsMessage = `Hi, I'm ${formData.name} and I'm interested in getting a quote for ${serviceName}.`;
         if (formData.message?.trim()) smsMessage += ` ${formData.message}`;
         smsMessage += ` You can reach me at ${formData.phone}. Thanks!`;
@@ -80,55 +81,68 @@ const Home = () => {
 
   const services = [
     {
-      icon: Hammer,
-      title: 'Roof Replacement',
-      desc: 'Full tear-off and re-roof using premium IKO & GAF asphalt shingles, metal, and flat-roof systems.',
-      img: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=900&q=80',
-    },
-    {
-      icon: Shield,
-      title: 'Roof Repair',
-      desc: 'Leaks, missing shingles, flashing, vents, and chimney work — fixed right the first time.',
-      img: 'https://images.unsplash.com/photo-1610128114197-485d933885c5?w=900&q=80',
-    },
-    {
       icon: Search,
-      title: 'Free Inspections',
-      desc: 'Detailed roof assessment with photos and a transparent, no-pressure written quote.',
-      img: 'https://images.unsplash.com/photo-1503594384566-461fe158e797?w=900&q=80',
+      title: 'Estimates & Inspections',
+      desc: 'Detailed roof assessments, drone surveys, moisture scans, and transparent itemized quotes for property managers and owners.',
+      img: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1200&q=80',
+    },
+    {
+      icon: Wrench,
+      title: 'Maintenance & Repair',
+      desc: 'Scheduled preventative maintenance programs, leak repairs, flashing, and seam work that extends roof life by 5–10 years.',
+      img: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1200&q=80',
     },
     {
       icon: Cloud,
-      title: 'Storm & Emergency',
-      desc: '24/7 emergency tarping and storm damage repair. We work directly with insurance.',
-      img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80',
+      title: 'Emergency Repair Service',
+      desc: '24/7 dispatch for storm damage, active leaks, and ponding water. Same-day tarp service. Insurance billed direct.',
+      img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
+    },
+    {
+      icon: LayoutGrid,
+      title: 'Alterations & Retrofits',
+      desc: 'HVAC curbs, skylights, hatches, drains, and structural retrofits — fully integrated and warranty-backed.',
+      img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+    },
+    {
+      icon: Layers,
+      title: 'Coating Systems',
+      desc: 'Restorative silicone, acrylic, and SPF coatings that seal aging roofs, reflect UV, and defer replacement costs.',
+      img: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?w=1200&q=80',
+    },
+    {
+      icon: Hammer,
+      title: 'Roof Replacements',
+      desc: 'Full tear-off and re-roof — TPO, EPDM, modified bitumen, PVC, and metal systems. Manufacturer-certified installs.',
+      img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200&q=80',
     },
   ];
 
   const stats = [
-    { value: '15+', label: 'Years Experience' },
-    { value: '2,000+', label: 'Roofs Installed' },
-    { value: '10yr', label: 'Workmanship Warranty' },
-    { value: '4.9', label: 'Average Rating' },
+    { value: '15+', label: 'Years in Business' },
+    { value: '5M+', label: 'Sq Ft Installed' },
+    { value: '24/7', label: 'Emergency Response' },
+    { value: '100%', label: 'WSIB Covered' },
   ];
 
   const reviews = [
-    { name: 'Andrew K.', city: 'Mississauga', text: 'Delta replaced our entire roof in two days. Crew was professional, the cleanup was spotless, and the price beat three other quotes. Highly recommend.' },
-    { name: 'Priya S.', city: 'Markham', text: 'Had a major leak after a storm. They came out same-day, tarped it for free, and had it permanently fixed within a week. Great communication throughout.' },
-    { name: 'Marco D.', city: 'Vaughan', text: 'Honest inspection, no upselling. They told me my roof had 5+ years of life left when others tried to sell me a full replacement. Earned my trust.' },
-    { name: 'Jennifer T.', city: 'Toronto', text: 'New shingles look incredible. The eavestroughs and flashing they installed are top-tier work. The 10-year workmanship warranty was the deciding factor.' },
-    { name: 'Chris L.', city: 'Oakville', text: 'From quote to completion in under two weeks. Fair, fast, and clean. Insurance claim was handled smoothly on their end.' },
+    { name: 'David R.', city: 'Property Manager · Etobicoke', text: 'Delta has serviced our 12-building portfolio for 6 years. Quarterly inspections, fast emergency dispatch, and clear documentation. Best commercial roofer we\'ve worked with.' },
+    { name: 'Linda C.', city: 'Facility Director · Mississauga', text: 'Re-roofed our 80,000 sq ft warehouse with TPO. Crew was on schedule, kept the site clean, and the warranty was the strongest of three bids. Zero complaints from tenants.' },
+    { name: 'Marcus T.', city: 'GC · Toronto', text: 'We sub Delta on every commercial retrofit. They show up, hit deadlines, and the workmanship is consistent. WSIB and insurance docs are always perfect on day one.' },
+    { name: 'Karen S.', city: 'Owner · Vaughan', text: 'Storm tore part of our retail roof off on a Saturday. Delta had it tarped within 4 hours and a permanent repair done by Tuesday. Insurance billed direct. Lifesavers.' },
+    { name: 'Anil P.', city: 'REIT Asset Manager', text: 'Their silicone coating system extended one of our flat roofs by 12+ years and saved us a six-figure replacement. Honest assessment, beautifully executed.' },
   ];
 
   const galleryImages = [
-    { url: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1200&q=80', alt: 'Asphalt shingle replacement' },
-    { url: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80', alt: 'Modern home with new roof' },
-    { url: 'https://images.unsplash.com/photo-1564540583246-934409427776?w=1200&q=80', alt: 'Suburban home roof project' },
-    { url: 'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=1200&q=80', alt: 'Roof detail close-up' },
-    { url: 'https://images.unsplash.com/photo-1542621334-a254cf47733d?w=1200&q=80', alt: 'Premium shingle installation' },
+    { url: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=1200&q=80', alt: 'TPO membrane on warehouse' },
+    { url: 'https://images.unsplash.com/photo-1581141849291-1125c7b692b5?w=1200&q=80', alt: 'Industrial facility re-roof' },
+    { url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80', alt: 'Downtown commercial building' },
+    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80', alt: 'Office complex roof' },
+    { url: 'https://images.unsplash.com/photo-1543674892-7d64d45df18b?w=1200&q=80', alt: 'Aerial roof inspection' },
+    { url: 'https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?w=1200&q=80', alt: 'Multi-unit retrofit project' },
   ];
 
-  const trustChips = ['Licensed & Insured', 'IKO Certified', 'GAF Authorized', 'WSIB Covered', 'BBB Accredited', '10-Year Warranty'];
+  const trustChips = ['Licensed & Insured', 'WSIB Covered', 'GAF Certified', 'IKO Approved', 'Carlisle SynTec', 'Firestone Red Shield', 'BBB Accredited', '$5M Liability'];
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -206,8 +220,8 @@ const Home = () => {
         {/* Background image with navy gradient overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1920&q=80"
-            alt="Modern home with premium roofing"
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80"
+            alt="Commercial building with premium roofing"
             className="w-full h-full object-cover opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a2540] via-[#0a2540]/80 to-transparent"></div>
@@ -228,7 +242,7 @@ const Home = () => {
             <div className="lg:col-span-8">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full mb-6 animate-fade-up">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span className="text-white/90 text-xs sm:text-sm font-semibold tracking-wide">NOW BOOKING — FREE INSPECTIONS THIS WEEK</span>
+                <span className="text-white/90 text-xs sm:text-sm font-semibold tracking-wide">COMMERCIAL ROOFING · 24/7 EMERGENCY DISPATCH</span>
               </div>
 
               <h1
@@ -236,16 +250,16 @@ const Home = () => {
                 className="font-display text-white text-5xl sm:text-7xl lg:text-[7.5rem] font-extrabold leading-[0.9] tracking-tight mb-6 animate-fade-up"
                 style={{ animationDelay: '0.1s' }}
               >
-                Roofs built<br />
-                <span className="text-white/40">to outlast</span><br />
+                Commercial<br />
+                <span className="text-white/40">roofing for</span><br />
                 <span className="relative inline-block">
-                  the storm.
+                  serious buildings.
                   <span className="absolute -bottom-2 left-0 right-0 h-1 bg-white"></span>
                 </span>
               </h1>
 
               <p className="text-white/80 text-lg sm:text-xl max-w-xl mb-8 font-light leading-relaxed animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                Family-run, fully licensed, and obsessed with craftsmanship. Delta Roofing protects GTA homes with premium materials and a 10-year workmanship warranty.
+                TPO, EPDM, modified bitumen, and coatings. Delta Roofing partners with property managers, REITs, and GCs across the GTA — from inspections to full replacements.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 animate-fade-up" style={{ animationDelay: '0.3s' }}>
@@ -308,17 +322,17 @@ const Home = () => {
             <div className="lg:col-span-7">
               <div className="text-xs font-bold tracking-[0.3em] text-[#0a2540] mb-4">— SERVICES</div>
               <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-[#0a2540] tracking-tight leading-[0.95]">
-                Everything your<br />roof needs.<span className="text-slate-300"> Done right.</span>
+                Full-service<br />commercial roofing.<span className="text-slate-300"> Done right.</span>
               </h2>
             </div>
             <div className="lg:col-span-5">
               <p className="text-slate-600 text-lg leading-relaxed font-light">
-                From a single missing shingle to a full re-roof, Delta handles it with the same obsession for detail. Premium materials, certified crews, no surprises.
+                From a single ponding-water repair to a multi-building TPO retrofit, our certified crews deliver to spec, on schedule, and with documentation your insurer and warranty provider will love.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => (
               <Card
                 key={i}
@@ -362,16 +376,16 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-xs font-bold tracking-[0.3em] text-white/60 mb-4">— WHY DELTA</div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.95] mb-12 max-w-4xl">
-            We&apos;d rather do it<br />
-            <span className="text-white/40">once, and do it</span> right.
+            Built for the buildings<br />
+            <span className="text-white/40">that keep your</span> business running.
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden">
             {[
-              { num: '01', title: 'Free Inspections', desc: 'No-pressure quote with photos and a clear scope of work.' },
-              { num: '02', title: 'Manufacturer Certified', desc: 'IKO and GAF approved installer with full system warranties.' },
-              { num: '03', title: '10-Year Workmanship', desc: 'Backed in writing. If we install it, we stand behind it.' },
-              { num: '04', title: '24/7 Emergency', desc: 'Storm damage? We tarp the same day and bill insurance directly.' },
+              { num: '01', title: 'Property Manager Focus', desc: 'Quarterly maintenance programs, photo documentation, and a single point of contact across your portfolio.' },
+              { num: '02', title: 'Manufacturer Certified', desc: 'GAF Master, IKO Shieldpro, Carlisle SynTec, and Firestone Red Shield — full system warranties up to 30 years.' },
+              { num: '03', title: 'Insurance & Compliance', desc: '$5M liability, WSIB clearance, current COI on file, and direct billing to insurance carriers.' },
+              { num: '04', title: '24/7 Emergency Dispatch', desc: 'Active leak or storm damage? Tarped within hours, permanent repair within days.' },
             ].map((item, i) => (
               <div key={i} className="bg-[#0a2540] hover:bg-black p-7 sm:p-8 transition-all duration-300 group" data-testid={`why-item-${i}`}>
                 <div className="font-display text-white/30 text-2xl font-bold mb-6">{item.num}</div>
@@ -442,7 +456,7 @@ const Home = () => {
           <div className="text-center mb-12 sm:mb-16">
             <div className="text-xs font-bold tracking-[0.3em] text-[#0a2540] mb-4">— REVIEWS</div>
             <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-[#0a2540] tracking-tight leading-[0.95] mb-4">
-              Real homeowners.<br />Real results.
+              Trusted by property<br />managers across the GTA.
             </h2>
             <div className="flex items-center justify-center gap-2 mt-6">
               <div className="flex">
@@ -450,7 +464,7 @@ const Home = () => {
                   <Star key={i} size={20} className="fill-[#0a2540] text-[#0a2540]" />
                 ))}
               </div>
-              <span className="text-slate-700 font-semibold ml-2">4.9 / 5 from 200+ reviews</span>
+              <span className="text-slate-700 font-semibold ml-2">4.9 / 5 from 200+ commercial clients</span>
             </div>
           </div>
 
@@ -560,7 +574,7 @@ const Home = () => {
                 Let&apos;s talk<br />about your roof.
               </h2>
               <p className="text-white/70 text-lg font-light mb-10 max-w-md">
-                Free inspection, free quote, no high-pressure sales. Just an honest conversation about what your home needs.
+                Free roof inspection and detailed estimate. We work with property managers, owners, and GCs across the GTA.
               </p>
 
               <div className="space-y-4 mb-10">
@@ -617,8 +631,8 @@ const Home = () => {
             <div className="lg:col-span-7">
               <Card className="border-0 bg-white text-slate-900 rounded-2xl overflow-hidden shadow-2xl">
                 <CardContent className="p-7 sm:p-10">
-                  <h3 className="font-display text-2xl font-extrabold text-[#0a2540] mb-1">Request a free quote</h3>
-                  <p className="text-slate-500 text-sm mb-7">We&apos;ll get back to you within 1 business day.</p>
+                  <h3 className="font-display text-2xl font-extrabold text-[#0a2540] mb-1">Request a free estimate</h3>
+                  <p className="text-slate-500 text-sm mb-7">We&apos;ll respond within 1 business day. For active leaks, please call us directly.</p>
                   <form onSubmit={handleSubmit} className="space-y-5" data-testid="quote-form">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
@@ -634,17 +648,18 @@ const Home = () => {
                       <label htmlFor="service" className="block text-xs font-bold text-[#0a2540] mb-2 tracking-widest uppercase">Service Needed</label>
                       <select data-testid="form-service" id="service" name="service" value={formData.service} onChange={handleInputChange} className="w-full border border-slate-300 rounded-lg px-4 h-12 focus:border-[#0a2540] focus:ring-2 focus:ring-[#0a2540] focus:outline-none bg-white">
                         <option value="">Select a service</option>
+                        <option value="inspection">Estimates &amp; Inspections</option>
+                        <option value="maintenance">Maintenance &amp; Repair</option>
+                        <option value="emergency">Emergency Repair Service</option>
+                        <option value="alterations">Alterations &amp; Retrofits</option>
+                        <option value="coatings">Coating Systems</option>
                         <option value="replacement">Roof Replacement</option>
-                        <option value="repair">Roof Repair</option>
-                        <option value="inspection">Free Inspection</option>
-                        <option value="storm">Storm / Emergency</option>
-                        <option value="eavestrough">Eavestroughs / Gutters</option>
                         <option value="multiple">Multiple Services</option>
                       </select>
                     </div>
                     <div>
                       <label htmlFor="message" className="block text-xs font-bold text-[#0a2540] mb-2 tracking-widest uppercase">Tell us about your project</label>
-                      <Textarea data-testid="form-message" id="message" name="message" value={formData.message} onChange={handleInputChange} rows={4} className="border-slate-300 focus:border-[#0a2540] focus:ring-[#0a2540] resize-none rounded-lg" placeholder="Roof age, issues, address (optional)..." />
+                      <Textarea data-testid="form-message" id="message" name="message" value={formData.message} onChange={handleInputChange} rows={4} className="border-slate-300 focus:border-[#0a2540] focus:ring-[#0a2540] resize-none rounded-lg" placeholder="Building type, approximate sq ft, roof age, address (optional)..." />
                     </div>
                     <Button data-testid="form-submit" type="submit" size="lg" className="w-full bg-[#0a2540] hover:bg-black text-white font-bold py-7 rounded-full transition-all">
                       Send Message <ArrowUpRight size={18} className="ml-1" />
@@ -672,7 +687,7 @@ const Home = () => {
                 </div>
               </div>
               <p className="text-white/60 leading-relaxed font-light max-w-md">
-                Family-run residential roofing experts serving the Greater Toronto Area. Premium materials, certified crews, honest pricing.
+                Commercial roofing experts serving the Greater Toronto Area. TPO, EPDM, modified bitumen, coatings, and full-system replacements — backed by manufacturer warranties.
               </p>
             </div>
             <div>
