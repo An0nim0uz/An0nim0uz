@@ -24,27 +24,19 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
 
-  // City coordinates for map zooming
-  const cityCoordinates = {
-    'Toronto': { bbox: '-79.50,43.58,-79.30,43.75', marker: '43.65,-79.38' },
-    'Mississauga': { bbox: '-79.72,43.52,-79.52,43.65', marker: '43.59,-79.64' },
-    'Brampton': { bbox: '-79.82,43.60,-79.62,43.76', marker: '43.68,-79.76' },
-    'Vaughan': { bbox: '-79.62,43.75,-79.42,43.88', marker: '43.84,-79.50' },
-    'Markham': { bbox: '-79.42,43.80,-79.22,43.92', marker: '43.86,-79.34' },
-    'Richmond Hill': { bbox: '-79.50,43.82,-79.30,43.92', marker: '43.87,-79.43' },
-    'Oakville': { bbox: '-79.75,43.40,-79.55,43.53', marker: '43.45,-79.68' },
-    'Burlington': { bbox: '-79.88,43.28,-79.68,43.40', marker: '43.33,-79.80' },
-    'Pickering': { bbox: '-79.15,43.80,-78.95,43.92', marker: '43.84,-79.09' },
-    'Ajax': { bbox: '-79.08,43.82,-78.88,43.92', marker: '43.85,-79.03' }
+  const getMapUrl = () => {
+    const query = selectedCity
+      ? `${selectedCity}, Ontario, Canada`
+      : 'Greater Toronto Area, Ontario, Canada';
+    const zoom = selectedCity ? 12 : 9;
+    return `https://maps.google.com/maps?q=${encodeURIComponent(query)}&z=${zoom}&output=embed`;
   };
 
-  const getMapUrl = () => {
-    if (selectedCity && cityCoordinates[selectedCity]) {
-      const coords = cityCoordinates[selectedCity];
-      return `https://www.openstreetmap.org/export/embed.html?bbox=${coords.bbox}&layer=mapnik&marker=${coords.marker}`;
-    }
-    // Default GTA view - tighter zoom showing core GTA cities
-    return 'https://www.openstreetmap.org/export/embed.html?bbox=-79.85%2C43.55%2C-79.10%2C43.90&layer=mapnik&marker=43.70%2C-79.40';
+  const getMapsAppUrl = () => {
+    const query = selectedCity
+      ? `${selectedCity}, Ontario, Canada`
+      : 'Greater Toronto Area, Ontario, Canada';
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
   };
 
   React.useEffect(() => {
@@ -520,14 +512,27 @@ const Home = () => {
             </div>
 
             {/* Map */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden h-[250px] sm:h-[300px]">
+            <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden h-[280px] sm:h-[320px]" data-testid="service-area-map">
               <iframe
                 key={selectedCity || 'gta'}
-                title="GTA Service Area"
+                title={selectedCity ? `${selectedCity} Service Area` : 'GTA Service Area'}
                 src={getMapUrl()}
                 className="w-full h-full"
                 style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
               ></iframe>
+              <a
+                href={getMapsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="open-in-google-maps"
+                className="absolute bottom-3 right-3 bg-white/95 hover:bg-white text-slate-800 text-xs font-semibold px-3 py-2 rounded-full shadow-lg flex items-center gap-1.5 transition-all hover:scale-105"
+              >
+                <MapPin size={14} className="text-sky-600" />
+                Open in Google Maps
+              </a>
             </div>
           </div>
         </div>
