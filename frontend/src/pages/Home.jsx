@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, MapPin, Clock, CheckCircle, Star, ChevronDown, Menu, Shield, Hammer, Search, Cloud, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle, Star, ChevronDown, Menu, Shield, Hammer, Search, Cloud, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
@@ -21,7 +21,12 @@ const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
 
-  const phoneNumber = '647-745-5082';
+  const phoneNumber = '416-798-0977';
+  const emailAddress = 'admin@deltaroofing.ca';
+  const address = {
+    line1: '1000 Martin Grove Rd',
+    line2: 'Etobicoke, ON M9W 4V8',
+  };
   const smsLink = `sms:${phoneNumber}?body=Hi Delta Roofing, I'd like to get a quote for`;
 
   const getMapsAppUrl = () => {
@@ -173,6 +178,11 @@ const Home = () => {
                   <DropdownMenuItem asChild>
                     <a href={`tel:${phoneNumber}`} className="w-full cursor-pointer flex items-center gap-2 font-medium">
                       <Phone size={14} /> {phoneNumber}
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href={`mailto:${emailAddress}`} className="w-full cursor-pointer flex items-center gap-2 font-medium">
+                      <Mail size={14} /> Email us
                     </a>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -562,6 +572,13 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
+                  <Mail className="mt-0.5 flex-shrink-0" size={20} />
+                  <div>
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Email</p>
+                    <a href={`mailto:${emailAddress}`} className="font-display text-xl font-bold hover:text-white/80 transition-colors break-all" data-testid="contact-email">{emailAddress}</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
                   <Clock className="mt-0.5 flex-shrink-0" size={20} />
                   <div>
                     <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Hours</p>
@@ -572,8 +589,17 @@ const Home = () => {
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors">
                   <MapPin className="mt-0.5 flex-shrink-0" size={20} />
                   <div>
-                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Service Area</p>
-                    <p className="font-medium">Greater Toronto Area</p>
+                    <p className="text-white/60 text-xs font-bold tracking-widest uppercase">Address</p>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address.line1 + ', ' + address.line2)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium hover:text-white/80 transition-colors block"
+                      data-testid="contact-address"
+                    >
+                      {address.line1}<br />{address.line2}
+                    </a>
+                    <p className="text-white/60 text-sm">Servicing the entire GTA</p>
                   </div>
                 </div>
               </div>
@@ -661,9 +687,10 @@ const Home = () => {
             <div>
               <h6 className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-4">Contact</h6>
               <ul className="space-y-3">
-                <li><a href={`tel:${phoneNumber}`} className="text-white/80 hover:text-white transition-colors">{phoneNumber}</a></li>
+                <li><a href={`tel:${phoneNumber}`} className="text-white/80 hover:text-white transition-colors block" data-testid="footer-phone">{phoneNumber}</a></li>
+                <li><a href={`mailto:${emailAddress}`} className="text-white/80 hover:text-white transition-colors break-all block" data-testid="footer-email">{emailAddress}</a></li>
+                <li className="text-white/80 leading-relaxed">{address.line1}<br />{address.line2}</li>
                 <li className="text-white/80">7 AM – 7 PM, 7 days</li>
-                <li className="text-white/80">GTA Wide Service</li>
               </ul>
             </div>
           </div>

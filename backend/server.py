@@ -61,8 +61,8 @@ class QuoteRequestDB(BaseModel):
 async def send_quote_email(quote_data: QuoteRequest):
     try:
         # Email configuration
-        sender_email = "noreply@deltaroofing.com"  # This can be any sender
-        receiver_email = "goncalop007@gmail.com"
+        sender_email = "noreply@deltaroofing.ca"  # This can be any sender
+        receiver_email = "admin@deltaroofing.ca"
         
         # Create message
         msg = MIMEMultipart('alternative')
