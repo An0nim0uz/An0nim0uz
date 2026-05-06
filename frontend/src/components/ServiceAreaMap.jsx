@@ -1,15 +1,6 @@
 import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import L from 'leaflet';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-
-// Fix Leaflet's default marker icons (they break with bundlers like CRA)
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-});
 
 const cityCoordinates = {
   'Toronto': [43.6532, -79.3832],
@@ -28,7 +19,6 @@ const GTA_CENTER = [43.7, -79.4];
 const GTA_ZOOM = 9;
 const CITY_ZOOM = 12;
 
-// Helper component that flies the map to a new location when selectedCity changes
 const FlyTo = ({ selectedCity }) => {
   const map = useMap();
   useEffect(() => {
@@ -47,22 +37,16 @@ const ServiceAreaMap = ({ selectedCity }) => {
       center={GTA_CENTER}
       zoom={GTA_ZOOM}
       scrollWheelZoom={false}
+      zoomControl={false}
+      attributionControl={false}
       style={{ width: '100%', height: '100%' }}
       data-testid="service-area-leaflet-map"
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        subdomains="abcd"
+        maxZoom={19}
       />
-      {Object.entries(cityCoordinates).map(([city, coords]) => (
-        <Marker key={city} position={coords}>
-          <Popup>
-            <strong>{city}</strong>
-            <br />
-            Service Area
-          </Popup>
-        </Marker>
-      ))}
       <FlyTo selectedCity={selectedCity} />
     </MapContainer>
   );
