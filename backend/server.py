@@ -61,12 +61,12 @@ class QuoteRequestDB(BaseModel):
 async def send_quote_email(quote_data: QuoteRequest):
     try:
         # Email configuration
-        sender_email = "noreply@bluehaven.com"  # This can be any sender
+        sender_email = "noreply@deltaroofing.com"  # This can be any sender
         receiver_email = "goncalop007@gmail.com"
         
         # Create message
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = f'New Quote Request from {quote_data.name}'
+        msg['Subject'] = f'New Roofing Quote Request from {quote_data.name}'
         msg['From'] = sender_email
         msg['To'] = receiver_email
         
@@ -75,14 +75,14 @@ async def send_quote_email(quote_data: QuoteRequest):
         <html>
           <body style="font-family: Arial, sans-serif; padding: 20px; background-color: #f3f4f6;">
             <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-              <h2 style="color: #0284c7; margin-bottom: 20px;">New Quote Request</h2>
-              <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                <p style="margin: 10px 0;"><strong style="color: #0c4a6e;">Name:</strong> {quote_data.name}</p>
-                <p style="margin: 10px 0;"><strong style="color: #0c4a6e;">Phone:</strong> <a href="tel:{quote_data.phone}" style="color: #0284c7;">{quote_data.phone}</a></p>
-                <p style="margin: 10px 0;"><strong style="color: #0c4a6e;">Service Requested:</strong> {quote_data.service if quote_data.service else 'Not specified'}</p>
+              <h2 style="color: #0a2540; margin-bottom: 20px;">New Quote Request — Delta Roofing</h2>
+              <div style="background-color: #f1f5f9; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #0a2540;">
+                <p style="margin: 10px 0;"><strong style="color: #0a2540;">Name:</strong> {quote_data.name}</p>
+                <p style="margin: 10px 0;"><strong style="color: #0a2540;">Phone:</strong> <a href="tel:{quote_data.phone}" style="color: #0a2540;">{quote_data.phone}</a></p>
+                <p style="margin: 10px 0;"><strong style="color: #0a2540;">Service Requested:</strong> {quote_data.service if quote_data.service else 'Not specified'}</p>
               </div>
               <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px;">
-                <p style="margin: 0 0 10px 0;"><strong style="color: #0c4a6e;">Message:</strong></p>
+                <p style="margin: 0 0 10px 0;"><strong style="color: #0a2540;">Message:</strong></p>
                 <p style="margin: 0; color: #334155; line-height: 1.6;">{quote_data.message if quote_data.message else 'No message provided'}</p>
               </div>
               <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
