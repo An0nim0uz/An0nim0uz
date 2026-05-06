@@ -416,8 +416,8 @@ const Home = () => {
             <p className="text-xl text-slate-600 font-light">See the Blue Haven difference</p>
           </div>
 
-          {/* Mobile Carousel - visible only on mobile */}
-          <div className="block md:hidden relative">
+          {/* Swipeable Gallery Carousel - works on all screen sizes */}
+          <div className="relative max-w-5xl mx-auto" data-testid="our-work-carousel">
             <Carousel
               opts={{
                 align: "start",
@@ -433,85 +433,36 @@ const Home = () => {
                   { url: 'https://customer-assets.emergentagent.com/job_c687948f-7933-41f5-af03-e120e036b0e9/artifacts/3y0lm3c5_image.png', alt: 'Driveway Cleaning Before/After' },
                   { url: 'https://customer-assets.emergentagent.com/job_c687948f-7933-41f5-af03-e120e036b0e9/artifacts/ww8tba0m_image.png', alt: 'Pool Deck Cleaning Before/After' }
                 ].map((image, index) => (
-                  <CarouselItem key={index}>
+                  <CarouselItem key={index} className="md:basis-1/2" data-testid={`gallery-slide-${index}`}>
                     <div className="p-1">
-                      <div className="relative overflow-hidden rounded-2xl shadow-xl h-80">
-                        <img 
+                      <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 h-72 sm:h-80">
+                        <img
                           src={image.url}
                           alt={image.alt}
-                          className="w-full h-full object-cover object-center"
+                          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                          draggable="false"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-4 lg:-left-12" data-testid="gallery-prev-btn" />
+              <CarouselNext className="hidden md:flex -right-4 lg:-right-12" data-testid="gallery-next-btn" />
             </Carousel>
-            
-            {/* Subtle left edge indicator */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-slate-900/5 to-transparent pointer-events-none flex items-center justify-start pl-2">
-              <svg 
-                className="w-5 h-5 text-white/20"
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </div>
-            
-            {/* Subtle right edge indicator */}
-            <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-slate-900/5 to-transparent pointer-events-none flex items-center justify-end pr-2">
-              <svg 
-                className="w-5 h-5 text-white/20"
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-            
-            {/* Swipe instruction text */}
-            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 pointer-events-none">
-              <div className="bg-black/30 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs font-medium flex items-center gap-2">
+
+            {/* Swipe hint - mobile only */}
+            <div className="md:hidden mt-4 flex justify-center pointer-events-none">
+              <div className="bg-slate-900/70 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs font-medium flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
                 </svg>
-                Swipe
+                Swipe to see more
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
-            </div>
-          </div>
-
-          {/* Desktop Grid - visible only on desktop */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {[
-              { url: 'https://customer-assets.emergentagent.com/job_c687948f-7933-41f5-af03-e120e036b0e9/artifacts/vs93un0x_image.png', alt: 'Patio Pressure Washing Before/After' },
-              { url: 'https://customer-assets.emergentagent.com/job_c687948f-7933-41f5-af03-e120e036b0e9/artifacts/7k9xv11b_image.png', alt: 'Window Cleaning' },
-              { url: 'https://customer-assets.emergentagent.com/job_c687948f-7933-41f5-af03-e120e036b0e9/artifacts/8ic2dr6s_image.png', alt: 'Garbage Bin Cleaning' },
-              { url: 'https://customer-assets.emergentagent.com/job_c687948f-7933-41f5-af03-e120e036b0e9/artifacts/3y0lm3c5_image.png', alt: 'Driveway Cleaning Before/After' }
-            ].map((image, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 w-full h-80">
-                <img 
-                  src={image.url}
-                  alt={image.alt}
-                  className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-            ))}
-            {/* Fifth image spans full width on larger screens */}
-            <div className="md:col-span-2 group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 w-full h-80">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_c687948f-7933-41f5-af03-e120e036b0e9/artifacts/ww8tba0m_image.png"
-                alt="Pool Deck Cleaning Before/After"
-                className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </div>
         </div>
